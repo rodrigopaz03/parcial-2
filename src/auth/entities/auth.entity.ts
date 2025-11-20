@@ -15,7 +15,7 @@ export class User {
   @Column()
   fullName: string;
 
-  @Column()
+  @Column({ default: true })
   isActive: boolean;
 
   @Column("simple-array")

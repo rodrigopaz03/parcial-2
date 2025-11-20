@@ -30,6 +30,8 @@ export class AuthService {
         const user = this.userRepository.create({
           ...userData,
           password: bcrypt.hashSync(password, 10),
+          isActive: true,     
+          roles: ['user'],        
         });
 
         await this.userRepository.save(user);
