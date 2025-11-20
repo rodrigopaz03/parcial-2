@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Key } from './keys.entity';
 
 @Entity()
 export class User {
@@ -6,7 +7,9 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column('text', {
+        unique: true,
+        })
   email: string;
 
   @Column()
@@ -20,5 +23,12 @@ export class User {
 
   @Column("simple-array")
   roles: string[];
+
+  @OneToMany(
+      ()=> Key,
+      (key) => key.user,
+      {cascade: true} //evitar true para q no haya huerfanos
+  )
+  keys?: Key[]
 
 }
