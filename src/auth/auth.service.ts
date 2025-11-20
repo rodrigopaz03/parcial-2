@@ -14,7 +14,7 @@ import { JwtService } from '@nestjs/jwt';
 import { JwtPayloadInterface } from './interfaces/jwt-payload.interface';
 
 
-
+  
 @Injectable()
 export class AuthService {
   constructor(
@@ -49,7 +49,7 @@ export class AuthService {
 
   private handleDBErrors(error: any): never {
     if (error.code === '23505') {
-      // violación de unique constraint
+      // violación de unique constraint - hacer commit
       throw new BadRequestException(error.detail);
     }
 
