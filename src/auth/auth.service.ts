@@ -49,7 +49,7 @@ export class AuthService {
 
   private handleDBErrors(error: any): never {
     if (error.code === '23505') {
-      // violación de unique constraint - hacer commit
+      // violación de unique constraint - hacer commit - otro commit
       throw new BadRequestException(error.detail);
     }
 
